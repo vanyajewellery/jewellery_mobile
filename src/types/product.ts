@@ -1,5 +1,6 @@
 export interface Product {
   id: string;
+  _id?: string;
   name: string;
   slug: string;
   category: string;
@@ -35,6 +36,7 @@ export interface Review {
 
 export interface Category {
   id: string;
+  _id?: string;
   name: string;
   slug: string;
   image: string;

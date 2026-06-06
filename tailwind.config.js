@@ -6,8 +6,8 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          gold: '#C5A880',
-          cream: '#FDFBF7',
+          gold: '#D4AF37',
+          cream: '#F9F9F9',
           charcoal: '#1A1A1A',
         }
       }
