@@ -35,7 +35,7 @@ export const register = async (data: any) => {
   return apiClient.post(API_ENDPOINTS.AUTH.REGISTER, data);
 };
 
-export const verifyOtp = async (data: { phone: string; otp: string }) => {
+export const verifyOtp = async (data: any) => {
   return apiClient.post(API_ENDPOINTS.AUTH.VERIFY_OTP, data);
 };
 

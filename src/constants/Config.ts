@@ -1,11 +1,11 @@
 import { Platform } from 'react-native';
 
 // UPDATE THIS to your local development machine IP for physical device testing
-export const LOCAL_IP = '192.168.1.100'; 
+export const LOCAL_IP = '192.168.1.13'; 
 
 export const BASE_URL = Platform.select({
   ios: 'http://localhost:5544/api/v1',
-  android: 'http://localhost:5544/api/v1',
+  android: `http://${LOCAL_IP}:5544/api/v1`,
   default: `http://${LOCAL_IP}:5544/api/v1`,
 }) || 'http://localhost:5544/api/v1';
 
