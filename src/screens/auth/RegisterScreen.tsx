@@ -8,6 +8,7 @@ import {
   Alert,
   Platform,
   ScrollView,
+  Image,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -100,9 +101,11 @@ export default function RegisterScreen() {
         <View className="w-full max-w-[400px] items-center">
           {/* Header Brand */}
           <View className="items-center mb-8">
-            <Text className="text-2xl font-bold tracking-[0.3em] text-brand-charcoal uppercase select-none">
-              ADORA
-            </Text>
+            <Image 
+              source={require('../../assets/images/png/logowithname.png')}
+              style={{ width: 220, height: 65 }}
+              resizeMode="contain"
+            />
             <View className="w-8 h-[1px] bg-brand-gold mt-2" />
           </View>
 

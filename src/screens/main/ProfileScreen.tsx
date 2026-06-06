@@ -33,9 +33,11 @@ export default function ProfileScreen() {
         <View className="bg-white p-8 rounded-lg border border-gray-200 shadow-sm items-center w-full max-w-[400px] self-center">
           {/* Brand Identity */}
           <View className="items-center mb-6">
-            <Text className="text-xl font-bold tracking-[0.3em] text-brand-charcoal uppercase">
-              ADORA
-            </Text>
+            <Image 
+              source={require('../../assets/images/png/logowithname.png')}
+              style={{ width: 180, height: 50 }}
+              resizeMode="contain"
+            />
             <View className="w-6 h-[1px] bg-brand-gold mt-2" />
           </View>
           

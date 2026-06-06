@@ -37,7 +37,7 @@ export default function WishlistScreen() {
     // Remove from wishlist after adding to bag
     dispatch(toggleWishlist(item));
     // Navigate to Cart
-    navigation.navigate('Cart');
+    navigation.navigate('Main', { screen: 'Cart' });
   };
 
   return (

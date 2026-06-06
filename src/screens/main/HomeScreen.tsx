@@ -88,27 +88,23 @@ export default function HomeScreen() {
 
   return (
     <ScrollView className="flex-1 bg-brand-cream" showsVerticalScrollIndicator={false}>
-      {/* Top Ticker */}
-      <View className="bg-brand-charcoal py-2 items-center">
-        <Text className="text-brand-gold text-[10px] font-bold tracking-[0.2em] uppercase">
-          ✦ Free Shipping Worldwide on orders over ₹999 ✦
-        </Text>
-      </View>
 
       {/* Brand Header */}
       <View className="py-4 px-6 bg-white border-b border-gray-150 items-center justify-between flex-row">
         <TouchableOpacity className="p-1">
           <Icon name="menu-outline" size={24} color="#1A1A1A" />
         </TouchableOpacity>
-        <Text className="text-xl font-bold tracking-[0.25em] text-brand-charcoal uppercase">
-          ADORA
-        </Text>
+        <Image 
+          source={require('../../assets/images/png/logowithname.png')}
+          style={{ width: 140, height: 38 }}
+          resizeMode="contain"
+        />
         <View className="flex-row items-center gap-4">
           <TouchableOpacity onPress={() => navigation.navigate('Shop')}>
             <Icon name="search-outline" size={24} color="#1A1A1A" />
           </TouchableOpacity>
           <TouchableOpacity 
-            onPress={() => navigation.navigate('Cart')}
+            onPress={() => navigation.navigate('Main', { screen: 'Cart' })}
             className="relative p-1"
           >
             <Icon name="bag-outline" size={24} color="#1A1A1A" />

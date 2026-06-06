@@ -7,8 +7,9 @@ import {
   ActivityIndicator,
   Alert,
   Platform,
+  Image,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { login } from '../../services/apiService';
@@ -17,6 +18,7 @@ import { saveToken } from '../../utils/storage';
 
 export default function LoginScreen() {
   const navigation = useNavigation<any>();
+  const route = useRoute<any>();
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState('');
@@ -57,7 +59,13 @@ export default function LoginScreen() {
         );
 
         Alert.alert('Success', 'Logged in successfully!');
-        navigation.navigate('Main');
+        
+        const redirect = route.params?.redirect;
+        if (redirect === 'Checkout') {
+          navigation.replace('Checkout');
+        } else {
+          navigation.navigate('Main');
+        }
       } else {
         Alert.alert('Error', 'Invalid login response');
       }
@@ -78,9 +86,11 @@ export default function LoginScreen() {
       <View className="w-full max-w-[400px] items-center">
         {/* Brand Identity */}
         <View className="items-center mb-8">
-          <Text className="text-2xl font-bold tracking-[0.3em] text-brand-charcoal uppercase select-none">
-            ADORA
-          </Text>
+          <Image 
+            source={require('../../assets/images/png/logowithname.png')}
+            style={{ width: 220, height: 65 }}
+            resizeMode="contain"
+          />
           <View className="w-8 h-[1px] bg-brand-gold mt-2" />
         </View>
 

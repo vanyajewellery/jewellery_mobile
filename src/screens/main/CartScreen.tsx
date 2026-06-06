@@ -9,6 +9,7 @@ import {
   removeItem,
   updateQuantity,
 } from '../../redux/slices/cartSlice';
+import { selectIsAuthenticated } from '../../redux/slices/authSlice';
 import { IMAGE_BASE_URL } from '../../constants/Config';
 
 const { width } = Dimensions.get('window');
@@ -26,6 +27,8 @@ export default function CartScreen() {
     return `${IMAGE_BASE_URL}${path}`;
   };
 
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+
   const handleRemoveItem = (id: string) => {
     dispatch(removeItem(id));
   };
@@ -33,6 +36,14 @@ export default function CartScreen() {
   const handleUpdateQty = (id: string, newQty: number) => {
     if (newQty < 1) return;
     dispatch(updateQuantity({ id, quantity: newQty }));
+  };
+
+  const handleCheckoutPress = () => {
+    if (isAuthenticated) {
+      navigation.navigate('Checkout');
+    } else {
+      navigation.navigate('Auth', { screen: 'Login', params: { redirect: 'Checkout' } });
+    }
   };
 
   return (
@@ -152,7 +163,10 @@ export default function CartScreen() {
 
           {/* Secure Checkout Action Footer */}
           <View className="bg-white p-4 border-t border-gray-150">
-            <TouchableOpacity className="w-full bg-brand-charcoal py-4 rounded-lg items-center justify-center flex-row gap-2 shadow-md">
+            <TouchableOpacity 
+              onPress={handleCheckoutPress}
+              className="w-full bg-brand-charcoal py-4 rounded-lg items-center justify-center flex-row gap-2 shadow-md"
+            >
               <Icon name="lock-closed" size={16} color="#D4AF37" />
               <Text className="text-white font-bold uppercase tracking-widest text-xs">
                 Secure Checkout

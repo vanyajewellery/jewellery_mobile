@@ -9,6 +9,7 @@ import {
   ActivityIndicator,
   Platform,
   Share,
+  Alert,
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -151,8 +152,32 @@ export default function ProductDetailScreen() {
       }
     }));
     
+    Alert.alert('Success', 'Item added to your bag!');
+  };
+
+  const handleBuyNow = () => {
+    if (!product) return;
+    
+    const activePrice = getActivePrice(product.price);
+    const originalPrice = getOriginalPrice(product.price) || activePrice;
+    
+    dispatch(addItem({
+      id: `${product.id}-${selectedMetal}-${selectedColor}`,
+      productId: product.id,
+      name: product.name,
+      image: selectedImage,
+      price: activePrice,
+      originalPrice: originalPrice,
+      quantity: 1,
+      variant: {
+        metal: selectedMetal,
+        color: selectedColor,
+        size: selectedSize,
+      }
+    }));
+    
     // Navigate to Cart
-    navigation.navigate('Cart');
+    navigation.navigate('Main', { screen: 'Cart' });
   };
 
   const handleToggleWishlist = () => {
@@ -341,15 +366,27 @@ export default function ProductDetailScreen() {
 
       {/* Action CTA Block */}
       <View className="mt-8 px-6 space-y-4">
-        <TouchableOpacity 
-          onPress={handleAddToBag}
-          className="w-full bg-brand-charcoal py-4 rounded-lg items-center justify-center flex-row gap-2 shadow-md"
-        >
-          <Icon name="bag-handle" size={18} color="#D4AF37" />
-          <Text className="text-white text-xs font-bold uppercase tracking-widest">
-            Add to Bag
-          </Text>
-        </TouchableOpacity>
+        <View className="flex-row gap-4">
+          <TouchableOpacity 
+            onPress={handleAddToBag}
+            className="flex-1 border border-brand-charcoal py-4 rounded-lg items-center justify-center flex-row gap-2 bg-white"
+          >
+            <Icon name="bag-handle-outline" size={18} color="#1A1A1A" />
+            <Text className="text-brand-charcoal text-xs font-bold uppercase tracking-widest">
+              Add to Bag
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity 
+            onPress={handleBuyNow}
+            className="flex-1 bg-brand-charcoal py-4 rounded-lg items-center justify-center flex-row gap-2 shadow-md"
+          >
+            <Icon name="flash-outline" size={18} color="#D4AF37" />
+            <Text className="text-white text-xs font-bold uppercase tracking-widest">
+              Buy
+            </Text>
+          </TouchableOpacity>
+        </View>
 
         <View className="flex-row gap-4">
           <TouchableOpacity 
