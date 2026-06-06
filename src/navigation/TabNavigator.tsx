@@ -1,5 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from '../screens/main/HomeScreen';
 import ShopScreen from '../screens/main/ShopScreen';
 import WishlistScreen from '../screens/main/WishlistScreen';
@@ -11,7 +12,7 @@ const Tab = createBottomTabNavigator();
 export default function TabNavigator() {
   return (
     <Tab.Navigator
-      screenOptions={{
+      screenOptions={({ route }) => ({
         headerShown: false,
         tabBarActiveTintColor: '#C5A880',
         tabBarInactiveTintColor: '#1A1A1A',
@@ -25,9 +26,24 @@ export default function TabNavigator() {
           borderTopWidth: 1,
           paddingBottom: 6,
           paddingTop: 6,
-          height: 55,
+          height: 60,
         },
-      }}
+        tabBarIcon: ({ color, size, focused }) => {
+          let iconName = 'home-outline';
+          if (route.name === 'Home') {
+            iconName = focused ? 'home' : 'home-outline';
+          } else if (route.name === 'Shop') {
+            iconName = focused ? 'grid' : 'grid-outline';
+          } else if (route.name === 'Wishlist') {
+            iconName = focused ? 'heart' : 'heart-outline';
+          } else if (route.name === 'Cart') {
+            iconName = focused ? 'cart' : 'cart-outline';
+          } else if (route.name === 'Profile') {
+            iconName = focused ? 'person' : 'person-outline';
+          }
+          return <Icon name={iconName} size={focused ? size + 1 : size} color={color} />;
+        },
+      })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Shop" component={ShopScreen} />

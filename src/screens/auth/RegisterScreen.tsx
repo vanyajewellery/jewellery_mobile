@@ -1,6 +1,8 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+
+const LOGO_WITH_NAME = require('../../assets/images/png/logwithname.png');
 
 export default function RegisterScreen() {
   const navigation = useNavigation<any>();
@@ -8,8 +10,13 @@ export default function RegisterScreen() {
   return (
     <View className="flex-1 justify-center items-center bg-brand-cream px-6">
       <View className="w-full bg-white p-8 rounded-2xl shadow-lg border border-brand-gold/20">
-        <Text className="text-3xl font-bold text-brand-charcoal text-center mb-2">VANYA</Text>
-        <Text className="text-sm text-brand-gold text-center mb-8 tracking-widest uppercase">Jewellery</Text>
+        <View className="items-center mb-6">
+          <Image
+            source={LOGO_WITH_NAME}
+            style={{ width: 160, height: 45 }}
+            resizeMode="contain"
+          />
+        </View>
         
         <Text className="text-xl font-semibold text-brand-charcoal mb-6">Create Account</Text>
 

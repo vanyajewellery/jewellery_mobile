@@ -12,6 +12,8 @@ const CATEGORIES = [
   { id: '4', name: 'Bracelets', image: 'https://picsum.photos/seed/bracelet/200/200' },
 ];
 
+const LOGO_WITH_NAME = require('../../assets/images/png/logwithname.png');
+
 export default function HomeScreen() {
   return (
     <ScrollView className="flex-1 bg-brand-cream">
@@ -23,8 +25,12 @@ export default function HomeScreen() {
       </View>
 
       {/* Brand Header */}
-      <View className="py-6 px-6 bg-white border-b border-brand-gold/10 items-center justify-between flex-row">
-        <Text className="text-2xl font-bold text-brand-charcoal tracking-widest">VANYA</Text>
+      <View className="py-4 px-6 bg-white border-b border-brand-gold/10 items-center justify-between flex-row">
+        <Image 
+          source={LOGO_WITH_NAME} 
+          style={{ width: 130, height: 35 }} 
+          resizeMode="contain" 
+        />
         <TouchableOpacity className="p-2 border border-brand-gold/30 rounded-full">
           <Text className="text-brand-gold text-xs font-bold uppercase tracking-wider">Search</Text>
         </TouchableOpacity>

@@ -1,0 +1,48 @@
+{
+  // ─── Java / Gradle false-positive fix ─────────────────────────────────────
+  // The Java Language Server tries to import every folder that contains a
+  // build.gradle / settings.gradle as a Gradle project, including files
+  // inside node_modules. The entries below tell it to skip them entirely.
+  "java.import.exclusions": [
+    "**/node_modules/**",
+    "**/.git/**",
+    "**/android/build/**",
+    "**/android/.gradle/**",
+    "**/android/app/build/**",
+    "**/android/app/.cxx/**"
+  ],
+
+  // Disable automatic Java project import hints in the workspace
+  "java.import.gradle.enabled": false,
+
+  // Do not treat node_modules sub-folders as separate Java projects
+  "java.project.importHint": false,
+
+  // ─── File / Search exclusions ──────────────────────────────────────────────
+  "files.exclude": {
+    "**/.git": true,
+    "**/node_modules": false,       // keep visible in explorer, but excluded below
+    "**/android/build": true,
+    "**/android/.gradle": true,
+    "**/android/app/build": true,
+    "**/android/app/.cxx": true
+  },
+
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/android/build": true,
+    "**/android/.gradle": true,
+    "**/android/app/build": true
+  },
+
+  // ─── TypeScript / React Native ────────────────────────────────────────────
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
